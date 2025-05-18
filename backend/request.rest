@@ -1,10 +1,10 @@
-GET http://localhost:3000/api/notes
+GET http://localhost:5000/api/notes
 
 ### pake id
-GET http://localhost:3000/api/notes/8
+GET http://localhost:5000/api/notes/1
 
 ### buat baru
-POST http://localhost:3000/api/notes
+POST http://localhost:5000/api/notes
 Content-Type: application/json
 
 {
@@ -14,7 +14,7 @@ Content-Type: application/json
 }
 
 ### update
-PUT http://localhost:3000/api/notes/25
+PUT http://localhost:5000/api/notes/1
 Content-Type: application/json
 
 {
@@ -24,4 +24,70 @@ Content-Type: application/json
 }
 
 ### hapus
-DELETE http://localhost:3000/api/notes/29
+DELETE http://localhost:5000/api/notes/1
+
+### 🔐 Variabel token (ganti setelah login)
+@token = hahaha
+
+
+###  Get All Users
+GET http://localhost:5000/users
+Content-Type: application/json
+
+###
+
+### 👤 Get User by ID
+GET http://localhost:5000/users/2
+Content-Type: application/json
+
+###
+
+###  Create User (Register)
+POST http://localhost:5000/create-users
+Content-Type: application/json
+
+{
+  "username": "nanaa",
+  "email": "nana@example.com",
+  "password": "123456"
+}
+
+###
+
+###  Update User
+PUT http://localhost:5000/update-users/1
+Content-Type: application/json
+
+{
+  "username": "aulia312",
+  "email": "qrnaulia@gmail.com",
+  "password": "passwordbaru"
+}
+
+###
+
+###  Delete User
+DELETE http://localhost:5000/delete-users/2
+Content-Type: application/json
+
+###
+
+###  Login User
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+  "username": "nanaa",
+  "password": "123456"
+}
+
+###
+
+###  Logout User (pakai verifyToken)
+POST http://localhost:5000/logout
+Authorization: {{token}}
+
+###
+
+
+

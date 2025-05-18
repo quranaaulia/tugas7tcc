@@ -1,20 +1,42 @@
 import express from "express";
 import cors from "cors";
-import bodyParser from "body-parser";
-import db from "./config/database.js";
-import noteRoutes from "./Route/NoteRoute.js"; // Tidak menggunakan folder `src/`
+import cookieParser from "cookie-parser";
+import NotesRoute from "./Route/NoteRoute.js";
+import UserRoute from "./Route/UserRoute.js";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = express();
-app.use(cors());
-app.use(bodyParser.json());
-app.use("/api", noteRoutes);
+const PORT = process.env.PORT || 5000;
 
-const PORT = 3000;
+// ✅ Konfigurasi CORS
+const allowedOrigins = [
+  "http://localhost:3000"
+];
 
-// Sync database
-db.sync()
-  .then(() => {
-    console.log("Database connected & synchronized");
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
-  .catch((error) => console.error("Database sync error:", error));
+);
+
+// ✅ Middleware
+app.use(cookieParser());
+app.use(express.json());
+
+// ✅ Routing langsung di root
+app.use("/api", NotesRoute);
+app.use(UserRoute);
+
+// ✅ Health Check
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok", message: "Server is running" });
+});
+
+// ✅ Start Server
+app.listen(PORT, () =>
+  console.log(`🚀 Server berjalan di http://localhost:${PORT}`)
+);

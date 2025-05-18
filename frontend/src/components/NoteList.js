@@ -3,12 +3,12 @@ import axios from "axios";
 import { BASE_URL } from "../utils/util"; // Pastikan path sesuai lokasi file
 
 const getNotes = async () => {
-  const response = await axios.get(`${BASE_URL}/notes`);
+  const response = await axios.get(`${BASE_URL}/api/notes`);
   return response.data;
 };
 
 const deleteNote = async (id) => {
-  return await axios.delete(`${BASE_URL}/notes/${id}`);
+  return await axios.delete(`${BASE_URL}/api/notes/${id}`);
 };
 
 const NoteList = ({ onEdit }) => {
@@ -46,7 +46,7 @@ const NoteList = ({ onEdit }) => {
         ))}
       </ul>
     </div>
-  );  
-};  
+  );
+};
 
 export default NoteList;

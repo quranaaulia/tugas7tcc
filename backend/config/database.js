@@ -1,14 +1,11 @@
 import { Sequelize } from "sequelize";
 
-const db = new Sequelize("notesnana", "admin", "nana", {
-    host: "34.135.131.201",
+const db = new Sequelize("notes", "root", "", {
+    host: "localhost",
     dialect: "mysql",
     dialectOptions: {
-        ssl: {
-            require: true,
-            rejectUnauthorized: false // Bisa disesuaikan tergantung konfigurasi sertifikat SSL
-        }
-    }
+    ssl: false
+     }
 });
 
 export default db;
