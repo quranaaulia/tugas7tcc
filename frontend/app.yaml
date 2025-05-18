@@ -1,5 +1,5 @@
-runtime: nodejs18
-service: notes-fe183 # ganti nama service kalau mau
+runtime: nodejs20
+service: notes-fe183  # Ganti nama service jika perlu
 instance_class: F1
 
 handlers:
